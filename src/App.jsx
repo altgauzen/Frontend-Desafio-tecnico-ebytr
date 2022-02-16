@@ -9,6 +9,7 @@ class App extends Component {
     this.state = {
       tasks: [],
     };
+    this.createTask = this.createTask.bind(this);
   }
 
   createTask(event, newTask) {
@@ -20,8 +21,14 @@ class App extends Component {
   }
 
   render() {
+    const { tasks } = this.state;
     return (
-      <AddTask onCreate={this.createTask} />
+      <>
+        <AddTask onCreate={this.createTask} />
+        { tasks.map((task) => (
+          <h1>{task.title}</h1>
+        )) }
+      </>
     );
   }
 }
