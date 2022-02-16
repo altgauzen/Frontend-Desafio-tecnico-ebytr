@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import AddTask from './components/addTask';
+import Task from './components/Task';
 
 class App extends Component {
   constructor() {
@@ -10,13 +11,36 @@ class App extends Component {
       tasks: [],
     };
     this.createTask = this.createTask.bind(this);
+    this.updateTask = this.updateTask.bind(this);
+    this.removeTask = this.removeTask.bind(this);
   }
 
-  createTask(event, newTask) {
-    event.preventDefault();
+  createTask(newTask) {
     const { tasks } = this.state;
     this.setState({
       tasks: [...tasks, newTask],
+    });
+  }
+
+  updateTask(updatedTask) {
+    const { tasks } = this.state;
+    const updatedTasks = tasks.map((task) => {
+      const taskToUpdate = task;
+      if (taskToUpdate.id === updatedTask.id) {
+        taskToUpdate.hasFinished = updatedTask.hasFinished;
+      }
+      return taskToUpdate;
+    });
+    this.setState({
+      tasks: updatedTasks,
+    });
+  }
+
+  removeTask(id) {
+    const { tasks } = this.state;
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    this.setState({
+      tasks: updatedTasks,
     });
   }
 
@@ -26,7 +50,12 @@ class App extends Component {
       <>
         <AddTask onCreate={this.createTask} />
         { tasks.map((task) => (
-          <h1>{task.title}</h1>
+          <Task
+            key={task.id}
+            data={task}
+            onUpdate={this.updateTask}
+            onRemove={this.removeTask}
+          />
         )) }
       </>
     );
