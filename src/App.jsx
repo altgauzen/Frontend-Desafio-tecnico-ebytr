@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import AddTask from './components/addTask';
 
-function App() {
-  return (
-    <h1>To do list</h1>
-  );
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      tasks: [],
+    };
+  }
+
+  createTask(event, newTask) {
+    event.preventDefault();
+    const { tasks } = this.state;
+    this.setState({
+      tasks: [...tasks, newTask],
+    });
+  }
+
+  render() {
+    return (
+      <AddTask onCreate={this.createTask} />
+    );
+  }
 }
 
 export default App;
