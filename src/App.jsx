@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+//  import Img from 'react-image';
 import AddTask from './components/addTask';
 import Task from './components/Task';
+
+import logoEbytr from './img/logoEbytr.png';
 
 class App extends Component {
   constructor() {
@@ -69,7 +72,9 @@ class App extends Component {
   render() {
     const { tasks } = this.state;
     return (
-      <>
+      <div className="todo-app">
+        <img src={logoEbytr} alt="logotipo da empresa" className="todo-img" />
+        <h1>Qual seu planejamento para hoje?</h1>
         <AddTask onCreate={this.createTask} />
         { tasks.map((task) => (
           <Task
@@ -80,7 +85,7 @@ class App extends Component {
             hasFinished={task.hasFinished}
           />
         )) }
-      </>
+      </div>
     );
   }
 }

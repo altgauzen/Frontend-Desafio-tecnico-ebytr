@@ -27,14 +27,15 @@ export default class Task extends Component {
   }
 
   render() {
-    //  const { hasFinished } = this.state;
     const { data, onRemove, hasFinished } = this.props;
     const { id, title } = data;
     return (
-      <div>
-        <input type="checkbox" onChange={this.handleCheckbox} checked={hasFinished} />
-        {title}
-        <button type="button" onClick={() => onRemove(id)}>Remover</button>
+      <div className="divMain">
+        <fieldset>
+          <input type="checkbox" onChange={this.handleCheckbox} checked={hasFinished} className="todo-container" id="cbox" />
+          {title}
+          <button type="button" onClick={() => onRemove(id)} className="todo-remove-button">Remover</button>
+        </fieldset>
       </div>
     );
   }

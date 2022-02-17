@@ -40,9 +40,9 @@ export default class AddTask extends Component {
   render() {
     const { title } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" value={title} onChange={this.handleInput} />
-        <button type="submit">Adicionar Tarefa</button>
+      <form onSubmit={this.handleSubmit} className="todo-form">
+        <input type="text" className="todo-input" value={title} onChange={this.handleInput} />
+        <button type="submit" className="todo-button">Adicionar Tarefa</button>
       </form>
     );
   }
