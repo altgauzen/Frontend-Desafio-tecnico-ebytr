@@ -22,7 +22,7 @@ export default class Task extends Component {
 
     onUpdate({
       ...currentState,
-      hasFinished: event.target.checek,
+      hasFinished: event.target.checked,
     });
   }
 
